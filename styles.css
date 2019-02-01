@@ -52,3 +52,7 @@ div>span {
     margin: 15px;
     inline-size: 15px;
 }
+table {
+    width:"100%";
+    border: 1px;
+}
