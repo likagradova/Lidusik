@@ -3,6 +3,9 @@ import logo from './logo.svg';
 import Title from "./components/Title"
 import './App.css';
 import Board from "./components/Board"
+import OutGoingsTable from "./components/Tables/OutGoingsTable"
+import ArrivalsTable from "./components/Tables/ArrivalsTable";
+import DetaineesTable from "./components/Tables/DetaineesTable"
 class App extends Component {
   state = {
     currentDirection:"Вылет"
@@ -32,6 +35,7 @@ class App extends Component {
     const {currentDirection} = this.state;
     return (
       <div className="App">
+        
         <Title />
         <Board direction={currentDirection} />
         <button onClick={this.changeDirectionToOutgoings.bind(this)}>
@@ -43,31 +47,9 @@ class App extends Component {
           <button onClick={this.changeDirectionToDetainees.bind(this)}>
           Задержанные </button>
 
-
-        <div class="table-flex__head">
-          <div class="table-flex__row">
-          </div>
-        </div>
-        <div>
-
-          <span>Время</span>
-
-          <span>
-            № рейса</span>
-
-          <span>
-            Авиакомпания</span>
-
-          <span>
-            Направление</span>
-
-          <span>
-            Статус</span>
-        </div>
-
-
-
-
+          {currentDirection === "Вылет" && <OutGoingsTable/>}
+          {currentDirection === "Прилет" && <ArrivalsTable/>}
+          {currentDirection === "Задержанные" && <DetaineesTable/>}
       </div>
     );
   }
