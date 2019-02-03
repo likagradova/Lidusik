@@ -37,7 +37,9 @@ class App extends Component {
       <div className="App">
         
         <Title />
+
         <Board direction={currentDirection} />
+
         <button onClick={this.changeDirectionToOutgoings.bind(this)}>
           Вылет </button>
 
@@ -46,13 +48,20 @@ class App extends Component {
 
           <button onClick={this.changeDirectionToDetainees.bind(this)}>
           Задержанные </button>
+          <div><input placeholder="Поиск по номеру рейса"></input>
+          </div>
 
           {currentDirection === "Вылет" && <OutGoingsTable/>}
           {currentDirection === "Прилет" && <ArrivalsTable/>}
           {currentDirection === "Задержанные" && <DetaineesTable/>}
+          import React, { Component } from 'react';
       </div>
+         
+      
+           
     );
   }
 }
+
 
 export default App;
