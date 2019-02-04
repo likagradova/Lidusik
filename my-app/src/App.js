@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import Title from "./components/Title"
+import Title from "./components/Title";
 import './App.css';
-import Board from "./components/Board"
-import OutGoingsTable from "./components/Tables/OutGoingsTable"
+import Board from "./components/Board";
+import DeparturesTable from "./components/Tables/DeparturesTable";
 import ArrivalsTable from "./components/Tables/ArrivalsTable";
-import DetaineesTable from "./components/Tables/DetaineesTable"
+import DetaineesTable from "./components/Tables/DetaineesTable";
 class App extends Component {
   state = {
     currentDirection:"Вылет"
@@ -18,7 +18,7 @@ class App extends Component {
     })
   }
 
-  changeDirectionToOutgoings() {
+  changeDirectionToDepartures() {
     this.setState({
       currentDirection:"Вылет"
     })
@@ -30,9 +30,15 @@ class App extends Component {
     })
   }
 
+  filterChanged(event) {
+    this.setState({
+      ...this.state,
+      filter: event.target.value
+    })
+  }
 
   render() {
-    const {currentDirection} = this.state;
+    const {currentDirection, filter} = this.state;
     return (
       <div className="App">
         
@@ -40,7 +46,7 @@ class App extends Component {
 
         <Board direction={currentDirection} />
 
-        <button onClick={this.changeDirectionToOutgoings.bind(this)}>
+        <button onClick={this.changeDirectionToDepartures.bind(this)} > 
           Вылет </button>
 
         <button onClick={this.changeDirectionToArrivals.bind(this)}>
@@ -48,13 +54,13 @@ class App extends Component {
 
           <button onClick={this.changeDirectionToDetainees.bind(this)}>
           Задержанные </button>
-          <div><input placeholder="Поиск по номеру рейса"></input>
+          <div><input placeholder="Поиск по номеру рейса" onChange={this.filterChanged.bind(this)}></input>
           </div>
-
-          {currentDirection === "Вылет" && <OutGoingsTable/>}
-          {currentDirection === "Прилет" && <ArrivalsTable/>}
-          {currentDirection === "Задержанные" && <DetaineesTable/>}
-          import React, { Component } from 'react';
+          
+         
+          {currentDirection === "Вылет" && <DeparturesTable filter={filter}/>}
+          {currentDirection === "Прилет" && <ArrivalsTable filter={filter}/>}
+          {currentDirection === "Задержанные" && <DetaineesTable filter={filter}/>}
       </div>
          
       
